@@ -11,11 +11,9 @@ public class WitchTime : MonoBehaviour
     {
         if (Input.GetKeyDown(timeKey))
         {
-            StartCoroutine(Witch());
+            AudioManager.instance.PlayAudio(timeClip, "witch");
+                 
         }
     }
-    IEnumerator Witch()
-    {
-        yield return 0;
-    }
+    
 }
