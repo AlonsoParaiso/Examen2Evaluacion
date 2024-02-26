@@ -125,9 +125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10180970d54c3d44884582e1c98ec118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 8
+  force: 3.5
   minTimeToExplode: 0.3
-  maxTimeToExplode: 0.5
+  maxTimeToExplode: 0.6
   minFireworks: 3
   maxFireworks: 8
   fireworkPrefab: {fileID: 739398319963719684}

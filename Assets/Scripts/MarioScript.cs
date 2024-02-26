@@ -19,7 +19,6 @@ public class MarioScript : MonoBehaviour
     private Vector2 dir;
     private bool _intentionToJump;
     private int doubleJump;
-    private KeyCode clikKey=KeyCode.Mouse0;
 
     // Start is called before the first frame update
     void Start()
