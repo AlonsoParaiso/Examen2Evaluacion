@@ -11,12 +11,14 @@ public class MarioScript : MonoBehaviour
     public LayerMask groundMask;
     public AudioClip jumpClip;
     public GameObject fireworkPrefab;
+    public int maxJump = 2;
 
     private Rigidbody2D rb;
     private SpriteRenderer _rend;
     private Animator _animator;
     private Vector2 dir;
     private bool _intentionToJump;
+    private int doubleJump;
 
     // Start is called before the first frame update
     void Start()
@@ -79,20 +81,21 @@ public class MarioScript : MonoBehaviour
         rb.velocity = nVel;
 
 
-        if (_intentionToJump && grnd)
+        if (_intentionToJump && (grnd || doubleJump < maxJump - 1))
         {
             _animator.Play("jumpAnimation");
             AddJumpForce();
         }
         _intentionToJump = false;
 
-        _animator.SetBool("isGrounded", grnd);
+        _animator.SetBool("IsGrounded", grnd);
     }
 
     public void AddJumpForce()
     {
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.AddForce(Vector2.up * jumpForce * rb.gravityScale, ForceMode2D.Impulse);
+        doubleJump++;
         AudioManager.instance.PlayAudio(jumpClip, "jumpSound");
     }
 
@@ -101,6 +104,7 @@ public class MarioScript : MonoBehaviour
         RaycastHit2D collision = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, groundMask);
         if (collision)
         {
+            doubleJump = 0;
             return true;
         }
         return false;
